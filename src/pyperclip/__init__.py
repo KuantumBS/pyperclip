@@ -18,8 +18,7 @@ from ctypes import c_size_t, sizeof, c_wchar_p, get_errno, c_wchar
 HAS_DISPLAY = os.getenv("DISPLAY", False)
 
 EXCEPT_MSG = """
-    Pyperclip could not find a copy/paste mechanism for your system.
-    For more information, please visit https://pyperclip.readthedocs.io/en/latest/index.html#not-implemented-error """
+    Pyperclip could not find a copy/paste mechanism for your system."""
 
 PY2 = sys.version_info[0] == 2
 PY3 = sys.version_info[0] == 3
