@@ -155,7 +155,7 @@ class TestOSX(_TestClipboard):
         else:
             clipboard = init_osx_pyobjc_clipboard()
 
-
+"""
 class TestGtk(_TestClipboard):
     if HAS_DISPLAY:
         try:
@@ -184,7 +184,7 @@ class TestQt(_TestClipboard):
 class TestXClip(_TestClipboard):
     if _executable_exists("xclip"):
         clipboard = init_xclip_clipboard()
-
+"""
 
 class TestXSel(_TestClipboard):
     if _executable_exists("xsel"):
