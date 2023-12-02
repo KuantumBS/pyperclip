@@ -110,11 +110,7 @@ def _stringifyText(text):
     else:
         acceptedTypes = (str, int, float, bool)
 
-    if
- 
-not
- 
-isinstance(text, acceptedTypes):
+    if not isinstance(text, acceptedTypes):
         raise PyperclipException('only str, int, float, and bool values can be copied to the clipboard, not %s' % (text.__class__.__name__))
 
     return STR_OR_UNICODE(text)
