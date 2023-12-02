@@ -21,9 +21,11 @@ EXCEPT_MSG = """
     Pyperclip could not find a copy/paste mechanism for your system.
     For more information, please visit https://pyperclip.readthedocs.io/en/latest/index.html#not-implemented-error """
 
-PY2 = sys.version_info[0] == 2
+#PY2 = sys.version_info[0] == 2
+PY3 = sys.version_info[0] == 3
 
-STR_OR_UNICODE = unicode if PY2 else str # For paste(): Python 3 uses str, Python 2 uses unicode.
+#STR_OR_UNICODE = unicode if PY2 else str # For paste(): Python 3 uses str, Python 2 uses unicode.
+STR_OR_UNICODE = bytes if PY2 else str  # For paste(): Python 3 uses str, Python 2 uses bytes.
 
 ENCODING = 'utf-8'
 
