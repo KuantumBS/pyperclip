@@ -172,7 +172,7 @@ class TestQt(_TestClipboard):
             import PyQt6.QtWidgets
         except ImportError:
             try:
-                import PyQt4.QtGui
+                import PyQt5.QtGui
             except ImportError:
                 pass
             else:
