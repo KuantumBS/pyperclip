@@ -607,7 +607,7 @@ def determine_clipboard():
             return init_osx_pbcopy_clipboard()
         else:
             return init_osx_pyobjc_clipboard()
-
+"""
     # Setup for the LINUX platform:
     if HAS_DISPLAY:
         try:
@@ -651,7 +651,7 @@ def determine_clipboard():
 
 
     return init_no_clipboard()
-
+"""
 
 def set_clipboard(clipboard):
     '''
