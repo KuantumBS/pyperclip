@@ -1,5 +1,6 @@
 [build-system]
 requires = ["qiskit>=0.20"]
+build-backend = "setuptools.build_wheel"
 
 
 [tool.poetry]
