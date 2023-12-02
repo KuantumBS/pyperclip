@@ -12,9 +12,9 @@ import warnings
 from ctypes import c_size_t, sizeof, c_wchar_p, get_errno, c_wchar
 
 
-# `import PyQt4` sys.exit()s if DISPLAY is not in the environment.
+# `import PyQt5` sys.exit()s if DISPLAY is not in the environment.
 # Thus, we need to detect the presence of $DISPLAY manually
-# and not load PyQt4 if it is absent.
+# and not load PyQt5 if it is absent.
 HAS_DISPLAY = os.getenv("DISPLAY", False)
 
 EXCEPT_MSG = """
@@ -158,11 +158,11 @@ def init_qt_clipboard():
         _is_qt_available = True
     except ImportError:
         try:
-            from PyQt5.QtWidgets import QApplication
+            from PyQt6.QtWidgets import QApplication
             _is_qt_available = True
         except ImportError:
             try:
-                from PyQt4.QtGui import QApplication
+                from PyQt5.QtGui import QApplication
                 _is_qt_available = True
             except ImportError:
                 _is_qt_available = False
@@ -223,14 +223,14 @@ def init_qt_clipboard():
     global QApplication
     # $DISPLAY should exist
 
-    # Try to import from qtpy, but if that fails try PyQt5 then PyQt4
+    # Try to import from qtpy, but if that fails try PyQt6 then PyQt5
     try:
         from qtpy.QtWidgets import QApplication
     except:
         try:
-            from PyQt5.QtWidgets import QApplication
+            from PyQt6.QtWidgets import QApplication
         except:
-            from PyQt4.QtGui import QApplication
+            from PyQt5.QtGui import QApplication
 
     app = QApplication.instance()
     if app is None:
@@ -579,7 +579,7 @@ def determine_clipboard():
     accordingly.
     '''
 
-    global Foundation, AppKit, gtk, qtpy, PyQt4, PyQt5
+    global Foundation, AppKit, gtk, qtpy, PyQt5, PyQt6
 
     # Setup for the CYGWIN platform:
     if 'cygwin' in platform.system().lower(): # Cygwin has a variety of values returned by platform.system(), such as 'CYGWIN_NT-6.1'
@@ -634,12 +634,12 @@ def determine_clipboard():
             # https://pypi.python.org/pypi/QtPy
             import qtpy  # check if qtpy is installed
         except ImportError:
-            # If qtpy isn't installed, fall back on importing PyQt4.
+            # If qtpy isn't installed, fall back on importing PyQt5.
             try:
-                import PyQt5  # check if PyQt5 is installed
+                import PyQt6  # check if PyQt6 is installed
             except ImportError:
                 try:
-                    import PyQt4  # check if PyQt4 is installed
+                    import PyQt5  # check if PyQt5 is installed
                 except ImportError:
                     pass # We want to fail fast for all non-ImportError exceptions.
                 else:
@@ -674,7 +674,7 @@ def set_clipboard(clipboard):
         "pbcopy": init_osx_pbcopy_clipboard,
         "pyobjc": init_osx_pyobjc_clipboard,
         "gtk": init_gtk_clipboard,
-        "qt": init_qt_clipboard,  # TODO - split this into 'qtpy', 'pyqt4', and 'pyqt5'
+        "qt": init_qt_clipboard,  # TODO - split this into 'qtpy', 'pyqt5', and 'pyqt6'
         "xclip": init_xclip_clipboard,
         "xsel": init_xsel_clipboard,
         "wl-clipboard": init_wl_clipboard,
@@ -697,7 +697,7 @@ def lazy_load_stub_copy(text):
 
     This allows users to import pyperclip without having determine_clipboard()
     automatically run, which will automatically select a clipboard mechanism.
-    This could be a problem if it selects, say, the memory-heavy PyQt4 module
+    This could be a problem if it selects, say, the memory-heavy PyQt5 module
     but the user was just going to immediately call set_clipboard() to use a
     different clipboard mechanism.
 
@@ -719,7 +719,7 @@ def lazy_load_stub_paste():
 
     This allows users to import pyperclip without having determine_clipboard()
     automatically run, which will automatically select a clipboard mechanism.
-    This could be a problem if it selects, say, the memory-heavy PyQt4 module
+    This could be a problem if it selects, say, the memory-heavy PyQt5 module
     but the user was just going to immediately call set_clipboard() to use a
     different clipboard mechanism.
 
