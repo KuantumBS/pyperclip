@@ -1,6 +1,5 @@
 [build-system]
-requires = ""
-build-backend = ""
+
 
 [tool.poetry]
 name = "pyperclip"
