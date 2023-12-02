@@ -22,7 +22,6 @@ setup(
     license='BSD',
     packages=find_packages(where='src'),
     package_dir={'': 'src'},
-    test_suite='tests',
     keywords="clipboard copy paste clip xsel xclip",
     classifiers=[
         'Development Status :: 5 - Production/Stable',
