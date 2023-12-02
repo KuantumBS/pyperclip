@@ -1,6 +1,6 @@
 [build-system]
 requires = ["qiskit>=0.20"]
-build-backend = ""
+
 
 [tool.poetry]
 name = "pyperclip"
