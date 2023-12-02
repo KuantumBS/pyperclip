@@ -30,7 +30,7 @@ import sys
 # Insert the path to the pyperclip directory into the sys.path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
-from pyperclip import _executable_exists, HAS_DISPLAY
+#from pyperclip import _executable_exists, HAS_DISPLAY
 from pyperclip import (init_osx_pbcopy_clipboard, init_osx_pyobjc_clipboard,
                     init_dev_clipboard_clipboard,
                     init_gtk_clipboard, init_qt_clipboard,
