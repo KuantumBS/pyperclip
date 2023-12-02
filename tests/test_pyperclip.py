@@ -1,4 +1,3 @@
-# coding: utf-8
 import string
 import unittest
 import random
@@ -147,7 +146,7 @@ class TestGtk(_TestClipboard):
 class TestQt(_TestClipboard):
     if HAS_DISPLAY:
         try:
-            import PyQt5.QtWidgets
+            import PyQt6.QtWidgets
         except ImportError:
             try:
                 import PyQt4.QtGui
