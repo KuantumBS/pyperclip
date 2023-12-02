@@ -161,7 +161,110 @@ def init_osx_pyobjc_clipboard():
 
     return copy_osx_pyobjc, paste_osx_pyobjc
 
+import platform
 
+def init_gtk_clipboard():
+    global gtk
+    global _is_gtk_available
+
+    try:
+        import gi
+        gi.require_version('Gtk', '3.0')
+        import gtk
+        _is_gtk_available = True
+    except ImportError:
+        _is_gtk_available = False
+
+    if not _is_gtk_available:
+        raise ValueError('Could not import gtk. Please make sure you have pygtk3 installed.')
+
+    def
+ 
+copy_gtk(text):
+
+        
+global cb
+        text = _stringifyText(text)
+        cb = gtk.Clipboard()
+        cb.set_text(text)
+        cb.store()
+
+    def
+ 
+paste_gtk():
+        clipboardContents = gtk.Clipboard().wait_for_text()
+        if clipboardContents is
+ 
+None:
+            return
+ 
+''
+
+        
+else:
+            return clipboardContents
+
+    return copy_gtk, paste_gtk
+
+
+def
+ 
+init_qt_clipboard():
+
+    
+global QApplication
+    global _is_qt_available
+
+    try:
+        from qtpy.QtWidgets import QApplication
+        _is_qt_available = True
+    except ImportError:
+        try:
+            from PyQt5.QtWidgets import QApplication
+            _is_qt_available = True
+        except ImportError:
+            try:
+                from PyQt4.QtGui import QApplication
+                _is_qt_available = True
+            except ImportError:
+                _is_qt_available = False
+
+    if not _is_qt_available:
+        raise ValueError('Could not import qt. Please make sure you have PyQt installed.')
+
+    app = QApplication.instance()
+    if app is
+ 
+None:
+        app = QApplication([])
+
+    def
+ 
+copy_qt(text):
+        text = _stringifyText(text)
+        cb = app.clipboard()
+        cb.setText(text)
+
+    def
+ 
+paste_qt():
+        cb = app.clipboard()
+        return STR_OR_UNICODE(cb.text())
+
+    return copy_qt, paste_qt
+
+
+def get_clipboard_functions():
+    if platform.system() == 'Linux':
+        return init_gtk_clipboard()
+    elif platform.system() == 'Windows':
+        if _is_qt_available:
+            return init_qt_clipboard()
+        else:
+            return init_gtk_clipboard()
+    else:
+        raise ValueError('Unsupported platform: ' + platform.system())
+"""
 def init_gtk_clipboard():
     global gtk
     import gtk
@@ -211,7 +314,7 @@ def init_qt_clipboard():
         return STR_OR_UNICODE(cb.text())
 
     return copy_qt, paste_qt
-
+"""
 
 def init_xclip_clipboard():
     DEFAULT_SELECTION='c'
