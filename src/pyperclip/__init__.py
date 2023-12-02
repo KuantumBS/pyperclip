@@ -130,41 +130,25 @@ def init_gtk_clipboard():
     if not _is_gtk_available:
         raise ValueError('Could not import gtk. Please make sure you have pygtk3 installed.')
 
-    def
- 
-copy_gtk(text):
-
-        
-global cb
+    def copy_gtk(text):
+        global cb
         text = _stringifyText(text)
         cb = gtk.Clipboard()
         cb.set_text(text)
         cb.store()
 
-    def
- 
-paste_gtk():
+    def paste_gtk():
         clipboardContents = gtk.Clipboard().wait_for_text()
-        if clipboardContents is
- 
-None:
-            return
- 
-''
-
-        
-else:
+        if clipboardContents is None:
+            return ''
+        else:
             return clipboardContents
 
     return copy_gtk, paste_gtk
 
 
-def
- 
-init_qt_clipboard():
-
-    
-global QApplication
+def init_qt_clipboard():
+    global QApplication
     global _is_qt_available
 
     try:
@@ -185,21 +169,15 @@ global QApplication
         raise ValueError('Could not import qt. Please make sure you have PyQt installed.')
 
     app = QApplication.instance()
-    if app is
- 
-None:
+    if app is None:
         app = QApplication([])
 
-    def
- 
-copy_qt(text):
+    def copy_qt(text):
         text = _stringifyText(text)
         cb = app.clipboard()
         cb.setText(text)
 
-    def
- 
-paste_qt():
+    def paste_qt():
         cb = app.clipboard()
         return STR_OR_UNICODE(cb.text())
 
