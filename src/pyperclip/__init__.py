@@ -102,6 +102,24 @@ class PyperclipWindowsException(PyperclipException):
 class PyperclipTimeoutException(PyperclipException):
     pass
 
+STR_OR_UNICODE = bytes if PY2 else str  # For paste(): Python 3 uses str, Python 2 uses bytes.
+
+def _stringifyText(text):
+    if PY2:
+        acceptedTypes = (bytes, str, int, float, bool)
+    else:
+        acceptedTypes = (str, int, float, bool)
+
+    if
+ 
+not
+ 
+isinstance(text, acceptedTypes):
+        raise PyperclipException('only str, int, float, and bool values can be copied to the clipboard, not %s' % (text.__class__.__name__))
+
+    return STR_OR_UNICODE(text)
+
+"""
 def _stringifyText(text):
     if PY2:
         acceptedTypes = (unicode, str, int, float, bool)
@@ -110,7 +128,7 @@ def _stringifyText(text):
     if not isinstance(text, acceptedTypes):
         raise PyperclipException('only str, int, float, and bool values can be copied to the clipboard, not %s' % (text.__class__.__name__))
     return STR_OR_UNICODE(text)
-
+"""
 
 def init_osx_pbcopy_clipboard():
 
