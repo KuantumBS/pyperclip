@@ -2,7 +2,6 @@
 requires = ["qiskit>=0.20"]
 build-backend = "setuptools.build_wheel"
 
-
 [tool.poetry]
 name = "pyperclip"
 version = "1.8.21"
@@ -38,9 +37,3 @@ ipython = "^8.10.0"
 
 [tool.poetry.group.tests]
 optional = true
-
-[tool.poetry.group.tests.dependencies]
-
-[tool.pytest.ini_options]
-testpaths = ['tests/']
-filterwarnings = ['ignore::RuntimeWarning']
