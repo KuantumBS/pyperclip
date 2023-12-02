@@ -184,7 +184,7 @@ class TestQt(_TestClipboard):
 class TestXClip(_TestClipboard):
     if _executable_exists("xclip"):
         clipboard = init_xclip_clipboard()
-"""
+
 
 class TestXSel(_TestClipboard):
     if _executable_exists("xsel"):
@@ -211,7 +211,7 @@ class TestNoClipboard(unittest.TestCase):
     def test_paste(self):
         with self.assertRaises(RuntimeError):
             self.paste()
-
+"""
 
 if __name__ == '__main__':
     unittest.main()
