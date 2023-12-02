@@ -1,6 +1,6 @@
 [build-system]
 requires = ["setuptools"]
-build-backend = "setuptools.build_wheel"
+build-backend = "setuptools"
 
 [tool.poetry]
 name = "pyperclip"
